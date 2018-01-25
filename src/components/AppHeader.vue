@@ -5,16 +5,31 @@
         <img class="logo" src="../assets/logo-48.png" alt="logo">
       </router-link>
       <router-link to="/create">New</router-link>
-      <a class="github" href="https://github.com/vuejs/vue-hackernews-2.0" target="_blank" rel="noopener">
-        Built with Vue.js
-      </a>
+
+      <a class="auth" v-if="userId" @click="logout()">Logout</a>
+      <router-link class="auth" v-else to="/login">Login</router-link>
+
     </nav>
 </header>
 </template>
 
 <script>
+  import { GC_USER_ID, GC_AUTH_TOKEN } from '../constants/settings'
+  
   export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    computed: {
+      userId () {
+        return this.$root.$data.userId
+      }
+    },
+    methods: {
+      logout () {
+        localStorage.removeItem(GC_USER_ID)
+        localStorage.removeItem(GC_AUTH_TOKEN)
+        this.$root.$data.userId = localStorage.getItem(GC_USER_ID)
+      }
+    }
   }
 </script>
 
@@ -48,7 +63,7 @@
       font-weight 400
     &:nth-child(6)
       margin-right 0
-  .github
+  .auth
     color #fff
     font-size .9em
     margin 0

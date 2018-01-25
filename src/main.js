@@ -10,7 +10,9 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 
+import { GC_USER_ID } from './constants/settings'
 
+let userId = localStorage.getItem(GC_USER_ID)
 
 const apolloClient = new ApolloClient({
   link: new HttpLink({ uri: 'http://localhost:3000/graphql' }),
@@ -33,6 +35,9 @@ new Vue({
   el: '#app',
   apolloProvider,
   router,
+  data: {
+    userId
+  },
   components: { App },
   template: '<App/>'
 })
