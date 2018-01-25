@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-//import router from './router'
+import router from './router'
 import 'tachyons'
 
 import { ApolloClient } from 'apollo-client'
@@ -32,7 +32,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   apolloProvider,
-  //router,
+  router,
   components: { App },
   template: '<App/>'
 })

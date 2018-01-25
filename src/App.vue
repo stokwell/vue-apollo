@@ -1,62 +1,62 @@
 <template>
   <div id="app">
-    <link-list></link-list>
+    <app-header></app-header>
+    <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
   import LinkList from './components/LinkList'
+  import CreateLink from './components/CreateLink'
+  import AppHeader from './components/AppHeader'
 
   export default {
     name: 'app',
     components: {
-      LinkList
+      AppHeader,
+      LinkList,
+      CreateLink,
     }
   }
 </script>
 
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, sans-serif;
-  }
+<style lang="stylus">
+  body
+    font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size 15px
+    background-color lighten(#eceef1, 30%)
+    margin 0
+    padding-top 55px
+    color #34495e
+    overflow-y scroll
 
-  input {
-    max-width: 500px;
-  }
+  a
+    color #34495e
+    text-decoration none
 
-  .gray {
-    color: #828282;
-  }
+  .view
+    max-width 800px
+    margin 0 auto
+    position relative
 
-  .orange {
-    background-color: #ff6600;
-  }
+  .fade-enter-active, .fade-leave-active
+    transition all .2s ease
 
-  .background-gray {
-    background-color: rgb(246,246,239);
-  }
+  .fade-enter, .fade-leave-active
+    opacity 0
 
-  .f11 {
-    font-size: 11px;
-  }
+  @media (max-width 860px)
+    .header .inner
+      padding 15px 30px
 
-  .w85 {
-    width: 85%;
-  }
-
-  .button {
-    font-family: monospace;
-    font-size: 10pt;
-    color: black;
-    background-color: buttonface;
-    text-align: center;
-    padding: 2px 6px 3px;
-    border-width: 2px;
-    border-style: outset;
-    border-color: buttonface;
-    cursor: pointer;
-    max-width: 250px;
-  }
+  @media (max-width 600px)
+    .header
+      .inner
+        padding 15px
+      a
+        margin-right 1em
+      .github
+        display none
 </style>
